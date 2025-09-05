@@ -14,11 +14,26 @@
             opacity: 1;
         }
         .notification {
-            animation: slideIn 0.5s ease-out;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            animation: fadeInOut 3s ease-in-out;
         }
-        @keyframes slideIn {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
         }
         .fade-in {
             animation: fadeIn 0.5s ease-in;
@@ -31,10 +46,8 @@
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
     <!-- Notification -->
-    <div id="notification" class="fixed center-10 center-10 z-100 hidden">
-        <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg notification">
-            <span id="notificationText">Berhasil login!</span>
-        </div>
+    <div id="notification" class="notification">
+        <span id="notificationText"></span>
     </div>
 
     <!-- Welcome Page -->
@@ -822,9 +835,9 @@
             const notification = document.getElementById('notification');
             const notificationText = document.getElementById('notificationText');
             notificationText.textContent = message;
-            notification.classList.remove('hidden');
+            notification.style.display = 'block';
             setTimeout(() => {
-                notification.classList.add('hidden');
+                notification.style.display = 'none';
             }, 3000);
         }
 
@@ -2048,24 +2061,3 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978ee589f490ce39',t:'MTc1NjgzNTkxOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
